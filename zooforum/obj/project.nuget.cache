@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nRsbPlc04u6cSQ8AbxptsH+3yXChRqd+fv7YzbIZQo84rmNwLwN21Hb5a8NI7B7z+5v+eCNTQLXcfJAPKYMMlA==",
+  "dgSpecHash": "tKUk8Crb1p1MfIl3d/2CRexsqlH4eSA0RWh3480QzaANx6Vchwc9nc8/+lebK/VqtEF54sMy5E/xnmug40t00w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\diana\\OneDrive\\Documents\\.net\\zooforum\\zooforum\\zooforum.csproj",
+  "projectFilePath": "C:\\Users\\diana\\OneDrive\\Documents\\.net\\project\\zooforum\\zooforum\\zooforum.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\diana\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\diana\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",

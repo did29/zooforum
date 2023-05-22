@@ -10464,11 +10464,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\diana\\OneDrive\\Documents\\.net\\zooforum\\zooforum\\zooforum.csproj",
+      "projectUniqueName": "C:\\Users\\diana\\OneDrive\\Documents\\.net\\project\\zooforum\\zooforum\\zooforum.csproj",
       "projectName": "zooforum",
-      "projectPath": "C:\\Users\\diana\\OneDrive\\Documents\\.net\\zooforum\\zooforum\\zooforum.csproj",
+      "projectPath": "C:\\Users\\diana\\OneDrive\\Documents\\.net\\project\\zooforum\\zooforum\\zooforum.csproj",
       "packagesPath": "C:\\Users\\diana\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\diana\\OneDrive\\Documents\\.net\\zooforum\\zooforum\\obj\\",
+      "outputPath": "C:\\Users\\diana\\OneDrive\\Documents\\.net\\project\\zooforum\\zooforum\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\diana\\AppData\\Roaming\\NuGet\\NuGet.Config",
