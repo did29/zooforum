@@ -1,4 +1,6 @@
-﻿namespace zooforum.Services.Interfaces
+﻿using zooforum.Services.ViewModels;
+
+namespace zooforum.Services.Interfaces
 {
     public interface IAnimalService
     {

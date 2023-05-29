@@ -13,6 +13,26 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\diana\\OneDrive\\Documents\\.net\\project\\zooforum\\zooforum\\wwwroot\\img\\1.jpg",
+      "PackagePath": "staticwebassets\\img\\1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\diana\\OneDrive\\Documents\\.net\\project\\zooforum\\zooforum\\wwwroot\\img\\animals.jpg",
+      "PackagePath": "staticwebassets\\img\\animals.jpg"
+    },
+    {
+      "Id": "C:\\Users\\diana\\OneDrive\\Documents\\.net\\project\\zooforum\\zooforum\\wwwroot\\img\\cat.jpg",
+      "PackagePath": "staticwebassets\\img\\cat.jpg"
+    },
+    {
+      "Id": "C:\\Users\\diana\\OneDrive\\Documents\\.net\\project\\zooforum\\zooforum\\wwwroot\\img\\dog.jpg",
+      "PackagePath": "staticwebassets\\img\\dog.jpg"
+    },
+    {
+      "Id": "C:\\Users\\diana\\OneDrive\\Documents\\.net\\project\\zooforum\\zooforum\\wwwroot\\img\\parrot.jpg",
+      "PackagePath": "staticwebassets\\img\\parrot.jpg"
+    },
+    {
       "Id": "C:\\Users\\diana\\OneDrive\\Documents\\.net\\project\\zooforum\\zooforum\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

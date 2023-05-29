@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using zooforum.Data.DataModel;
 
 namespace zooforum.Data
 {
@@ -11,7 +12,7 @@ namespace zooforum.Data
              
         }
 
-        public IEnumerable<object> Animal { get; internal set; }
+        public DbSet<Animal> Animal { get; internal set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

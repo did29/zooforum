@@ -1,4 +1,5 @@
 ﻿using zooforum.Data;
+using zooforum.Data.DataModel;
 using zooforum.Services.Interfaces;
 using zooforum.Services.ViewModels;
 
@@ -24,13 +25,13 @@ namespace zooforum.Services
         }
         public async Task CreateAsync(AnimalViewModel model)
         {
-            Animal movie = new Animal();
+            Animal animal = new Animal();
 
-            movie.Id = Guid.NewGuid().ToString();
-            movie.Type = model.Type;
-            movie.Breed = model.Breed;
+            animal.Id = Guid.NewGuid().ToString();
+            animal.Type = model.Type;
+            animal.Breed = model.Breed;
 
-            await context.Animal.AddAsync(movie);
+            await context.Animal.AddAsync(animal);
             await context.SaveChangesAsync();
         }
         public async Task DeleteAnimal(string id)
@@ -41,7 +42,7 @@ namespace zooforum.Services
             }
             if (id != null)
             {
-                var movieDb = context.Animal.FirstOrDefault(x => x.Id == id);
+                var animalDb = context.Animal.FirstOrDefault(x => x.Id == id);
                 context.Animal.Remove(animalDb);
                 await context.SaveChangesAsync();
             }
