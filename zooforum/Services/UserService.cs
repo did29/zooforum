@@ -5,21 +5,21 @@ using zooforum.Services.ViewModels;
 
 namespace zooforum.Services
 {
-    public class AnimalService : IAnimalService
+    public class UserService : IUserService
     {
         private readonly ApplicationDbContext context;
-        public AnimalService(ApplicationDbContext post)
+        public UserService(ApplicationDbContext post)
         {
             context = post;
         }
 
-        public List<AnswerViewModel> GetAll()
+        public List<UserViewModel> GetAll()
         {
-            return context.Animal.Select(animal => new AnswerViewModel()
+            return context.User.Select(user => new UserViewModel()
             {
-                Id = animal.Id,
-                Type = animal.Type,
-                Breed = animal.Breed
+                Id = user.Id,
+                Type = user.Type,
+                Breed = user.Breed
 
             }).ToList();
         }

@@ -12,7 +12,11 @@ namespace zooforum.Data
              
         }
 
-        public DbSet<Animal> Animal { get; internal set; }
+        public DbSet<Animal> Animal { get;  set; }
+        public DbSet<User> User { get;  set; }
+        public DbSet<Answer> Answer { get; set; }
+        public DbSet<Question> Question { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
