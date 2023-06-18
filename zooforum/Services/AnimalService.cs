@@ -1,4 +1,5 @@
-﻿using zooforum.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using zooforum.Data;
 using zooforum.Data.DataModel;
 using zooforum.Services.Interfaces;
 using zooforum.Services.ViewModels;
@@ -13,25 +14,47 @@ namespace zooforum.Services
             context = post;
         }
 
-        public List<AnswerViewModel> GetAll()
+        public List<AnimalViewModel> GetAll()
         {
-            return context.Animal.Select(animal => new AnswerViewModel()
+            return context.Animal.Select(animal => new AnimalViewModel()
             {
                 Id = animal.Id,
                 Type = animal.Type,
-                Breed = animal.Breed
+                Breed = animal.Breed,
+                Info = animal.Info,
+                History = animal.History
 
             }).ToList();
         }
-        public async Task CreateAsync(AnswerViewModel model)
+        public async Task CreateAnimal(AnimalViewModel model)
         {
             Animal animal = new Animal();
 
             animal.Id = Guid.NewGuid().ToString();
             animal.Type = model.Type;
             animal.Breed = model.Breed;
+            animal.Info = model.Info;
+            animal.History = model.History;
 
             await context.Animal.AddAsync(animal);
+            await context.SaveChangesAsync();
+        }
+        public async Task UpdateAsync(AnimalViewModel model)
+        {
+            var animal = await context.Animal.FirstOrDefaultAsync(x => x.Id == model.Id);
+
+            if (animal != null)
+            {
+                animal.Type = model.Type;
+                animal.Breed = model.Breed;
+                animal.Info = model.Info;
+                animal.History = model.History;
+
+                await context.SaveChangesAsync();
+            }
+        }
+        public async Task SaveChangesAsync()
+        {
             await context.SaveChangesAsync();
         }
         public async Task DeleteAnimal(string id)
@@ -47,10 +70,10 @@ namespace zooforum.Services
                 await context.SaveChangesAsync();
             }
         }
-        public AnswerViewModel GetDetailsById(string id)
+        public AnimalViewModel GetDetailsById(string id)
         {
-            AnswerViewModel animal = context.Animal
-                .Select(animal => new AnswerViewModel
+            AnimalViewModel animal = context.Animal
+                .Select(animal => new AnimalViewModel
                 {
                     Id = animal.Id,
                     Type = animal.Type,
@@ -59,19 +82,36 @@ namespace zooforum.Services
 
             return animal;
         }
-        public AnswerViewModel UpdateById(string id)
+        public AnimalViewModel UpdateById(string id)
         {
-            AnswerViewModel animal = context.Animal
-                .Select(animal => new AnswerViewModel
+            AnimalViewModel animal = context.Animal
+                .Select(animal => new AnimalViewModel
                 {
                     Id = animal.Id,
                     Type = animal.Type,
                     Breed = animal.Breed,
+                    Info = animal.Info,
+                    History = animal.History
                 }).SingleOrDefault(animal => animal.Id == id);
 
             return animal;
         }
-        public async Task UpdateAsync(AnswerViewModel model)
+        public AnimalViewModel Find(string id)
+        {
+            var animal = context.Animal.FirstOrDefault(x => x.Id == id);
+            var animalViewModel = new AnimalViewModel()
+            {
+                Id = animal.Id,
+                Type = animal.Type,
+                Breed = animal.Breed,
+                Info = animal.Info,
+                History = animal.History
+            };
+
+            return animalViewModel;
+        }
+
+        public async Task UpdateAnimal(AnimalViewModel model)
         {
             Animal animal = context.Animal.Find(model.Id);
 

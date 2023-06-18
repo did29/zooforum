@@ -1,88 +1,131 @@
-﻿using zooforum.Data.DataModel;
-using zooforum.Data;
+﻿using zooforum.Data;
 using zooforum.Services.Interfaces;
 using zooforum.Services.ViewModels;
+using zooforum.Data.DataModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace zooforum.Services
 {
     public class AnswerService : IAnswerService
     {
-//        private readonly ApplicationDbContext context;
-//        public AnswerService(ApplicationDbContext post)
-//        {
-//            context = post;
-//        }
+        private readonly ApplicationDbContext context;
+        public AnswerService(ApplicationDbContext post)
+        {
+            context = post;
+        }
 
-//        public List<AnswerViewModel> GetAll()
-//        {
-//            return context.Animal.Select(animal => new AnswerViewModel()
-//            {
-//                //Id = animal.Id,
-//                //Type = animal.Type,
-//                //Breed = animal.Breed
+        public List<AnswerViewModel> GetAll()
+        {
+            return context.Answer.Select(answer => new AnswerViewModel()
+            {
+                Id = answer.Id,
+                Content = answer.Content,
+                CreatedAt = answer.CreatedAt
 
-//            }).ToList();
-//        }
-//        public async Task CreateAsync(AnswerViewModel model)
-//        {
-//            Animal animal = new Animal();
+            }).ToList();
+        }
+        public async Task CreateAnswer(AnswerViewModel model)
+        {
+            Answer answer = new Answer
+            {
+                Id = Guid.NewGuid().ToString(),
+                Content = model.Content,
+                CreatedAt = model.CreatedAt
+            };
 
-//            animal.Id = Guid.NewGuid().ToString();
-//            animal.Type = model.Type;
-//            animal.Breed = model.Breed;
+            await context.Answer.AddAsync(answer);
+            await context.SaveChangesAsync(); 
+            
+        }
+        public async Task UpdateAsync(AnswerViewModel model)
+        {
+            var answer = await context.Answer.FirstOrDefaultAsync(x => x.Id == model.Id);
 
-//            await context.Animal.AddAsync(animal);
-//            await context.SaveChangesAsync();
-//        }
-//        public async Task DeleteAnimal(string id)
-//        {
-//            if (string.IsNullOrEmpty(id) || string.IsNullOrWhiteSpace(id))
-//            {
-//                Console.WriteLine("Eror!");
-//            }
-//            if (id != null)
-//            {
-//                var animalDb = context.Animal.FirstOrDefault(x => x.Id == id);
-//                context.Animal.Remove(animalDb);
-//                await context.SaveChangesAsync();
-//            }
-//        }
-//        public AnswerViewModel GetDetailsById(string id)
-//        {
-//            AnswerViewModel animal = context.Animal
-//                .Select(animal => new AnswerViewModel
-//                {
-//                    Id = animal.Id,
-//                    Type = animal.Type,
-//                    Breed = animal.Breed,
-//                }).SingleOrDefault(animal => animal.Id == id);
+            if (answer != null)
+            {
+                answer.Content = model.Content;
+                answer.UpdatedAt = DateTime.Now;
 
-//            return animal;
-//        }
-//        public AnswerViewModel UpdateById(string id)
-//        {
-//            AnswerViewModel animal = context.Animal
-//                .Select(animal => new AnswerViewModel
-//                {
-//                    Id = animal.Id,
-//                    Type = animal.Type,
-//                    Breed = animal.Breed,
-//                }).SingleOrDefault(animal => animal.Id == id);
+                await context.SaveChangesAsync();
+            }
+        }
+        public async Task SaveChangesAsync()
+            {
+                await context.SaveChangesAsync();
+            }
+        public async Task DeleteAnswer(string id)
+        {
+            if (string.IsNullOrEmpty(id) || string.IsNullOrWhiteSpace(id))
+            {
+                Console.WriteLine("Eror!");
+            }
+            if (id != null)
+            {
+                var animalDb = context.Answer.FirstOrDefault(x => x.Id == id);
+                context.Answer.Remove(animalDb);
+                await context.SaveChangesAsync();
+            }
+        }
+        public AnswerViewModel GetDetailsById(string id)
+        {
+            AnswerViewModel answer = context.Answer
+                .Select(answer => new AnswerViewModel
+                {
+                    Id = answer.Id,
+                    Content = answer.Content,
+                    CreatedAt = answer.CreatedAt,
+                }).SingleOrDefault(answer => answer.Id == id);
 
-//            return animal;
-//        }
-//        public async Task UpdateAsync(AnswerViewModel model)
-//        {
-//            Animal animal = context.Animal.Find(model.Id);
+            return answer;
+        }
+        public AnswerViewModel Find(string id)
+        {
+            var answer = context.Answer.FirstOrDefault(x => x.Id == id);
+            var answerViewModel = new AnswerViewModel()
+            {
+                Id = answer.Id,
+                Content = answer.Content,
+                CreatedAt = answer.CreatedAt,
+            };
 
-//            bool isAnimalNull = animal == null;
-//            if (isAnimalNull)
-//            {
-//                return;
-//            }
+            return answerViewModel;
+        }
+        public async Task UpdateAnswer(AnswerViewModel model)
+        {
+            var answer = context.Answer.FirstOrDefault(x => x.Id == model.Id);
 
-//            context.Animal.Update(animal);
-//            await context.SaveChangesAsync();
-//        }
-   }
+            if (answer != null)
+            {
+                answer.Content = model.Content;
+                answer.CreatedAt = model.CreatedAt;
+
+                await context.SaveChangesAsync();
+            }
+        }
+        public AnswerViewModel UpdateById(string id)
+        {
+            AnswerViewModel answer = context.Answer
+                .Select(answer => new AnswerViewModel
+                {
+                    Id = answer.Id,
+                    Content = answer.Content,
+                    CreatedAt = answer.CreatedAt,
+                }).SingleOrDefault(answer => answer.Id == id);
+
+            return answer;
+        }
+        public async Task Update(AnswerViewModel model)
+        {
+            Answer answer = context.Answer.Find(model.Id);
+
+            bool isAnswerNull = answer == null;
+            if (isAnswerNull)
+            {
+                return;
+            }
+
+            context.Answer.Update(answer);
+            await context.SaveChangesAsync();
+        }
+    }
 }

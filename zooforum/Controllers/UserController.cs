@@ -1,28 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using zooforum.Data.DataModel;
 using zooforum.Services;
+using zooforum.Services.Interfaces;
+using zooforum.Services.ViewModels;
 
 namespace zooforum.Controllers
 {
     public class UserController : Controller
     {
-        public ActionResult Index()
-        {
-            
-            var users = UserService.GetAllUsers();
+        public UserService userService { get; set; }
 
-            
-            return View(users);
+        public UserController(UserService service)
+        {
+            userService = service;
         }
-
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
-            var user = UserService.GetUserById(id);
+            var user = userService.GetUserById(id);
 
             if (user == null)
             {
-              
-                return HttpNotFound();
+
+                return NotFound();
             }
 
             return View(user);
@@ -35,11 +34,11 @@ namespace zooforum.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(User user)
+        public ActionResult CreateUser(User user)
         {
             if (ModelState.IsValid)
             {
-                UserService.AddUser(user);
+                userService.AddUser(user);
 
                 return RedirectToAction("Details", new { id = user.Id });
             }
@@ -47,13 +46,13 @@ namespace zooforum.Controllers
             return View(user);
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            var user = UserService.GetUserById(id);
+            var user = userService.GetUserById(id);
 
             if (user == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             return View(user);
@@ -61,25 +60,23 @@ namespace zooforum.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(User user)
+        public async Task<ActionResult> Edit(UserViewModel user)
         {
             if (ModelState.IsValid)
             {
-                UserService.UpdateUser(user);
-
-                return RedirectToAction("Details", new { id = user.Id });
+                await userService.UpdateAsync(user);
+                return RedirectToAction("Index");
             }
-
             return View(user);
         }
 
-        public ActionResult Delete(int id)
+        public ActionResult DeleteUser(string id)
         {
-            var user = UserService.GetUserById(id);
+            var user = userService.GetUserById(id);
 
             if (user == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             return View(user);
@@ -88,9 +85,9 @@ namespace zooforum.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            UserService.DeleteUser(id);
+            userService.DeleteUser(id);
 
             return RedirectToAction("Index");
         }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "q3nUpPO4V9g1YhgvdOHd6BjaIxUkwlCL5MtTLaZdfX8=",
+  "Hash": "fW3FFGqX9YoYGb4J1iWSX+JJfyqJP6yf++x/vH0Ck/I=",
   "Source": "zooforum",
   "BasePath": "_content/zooforum",
   "Mode": "Default",
@@ -1156,12 +1156,12 @@
       "OriginalItemSpec": "wwwroot\\img\\cat.jpg"
     },
     {
-      "Identity": "C:\\Users\\diana\\OneDrive\\Documents\\.net\\project\\zooforum\\zooforum\\wwwroot\\img\\dog.jpg",
+      "Identity": "C:\\Users\\diana\\OneDrive\\Documents\\.net\\project\\zooforum\\zooforum\\wwwroot\\img\\dog.jpeg",
       "SourceId": "zooforum",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\diana\\OneDrive\\Documents\\.net\\project\\zooforum\\zooforum\\wwwroot\\",
       "BasePath": "_content/zooforum",
-      "RelativePath": "img/dog.jpg",
+      "RelativePath": "img/dog.jpeg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1170,7 +1170,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\img\\dog.jpg"
+      "OriginalItemSpec": "wwwroot\\img\\dog.jpeg"
     },
     {
       "Identity": "C:\\Users\\diana\\OneDrive\\Documents\\.net\\project\\zooforum\\zooforum\\wwwroot\\img\\parrot.jpg",

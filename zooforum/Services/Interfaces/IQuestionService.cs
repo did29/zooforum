@@ -5,8 +5,8 @@ namespace zooforum.Services.Interfaces
     public interface IQuestionService
     {
         Task DeleteQuestion(string id);
-        Task CreateAsync(QuestionViewModel model);
+        Task CreateQuestion(QuestionViewModel model);
         QuestionViewModel UpdateById(string id);
-        Task UpdateAsync(QuestionViewModel model);
+        Task UpdateQuestion(QuestionViewModel model);
     }
 }

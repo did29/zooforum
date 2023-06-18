@@ -2,6 +2,7 @@
 using zooforum.Data;
 using zooforum.Services.Interfaces;
 using zooforum.Services.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace zooforum.Services
 {
@@ -13,28 +14,61 @@ namespace zooforum.Services
             context = post;
         }
 
-        public List<AnswerViewModel> GetAll()
+        public List<QuestionViewModel> GetAll()
         {
-            return context.Animal.Select(animal => new AnswerViewModel()
+            return context.Question.Select(question => new QuestionViewModel()
             {
-                Id = animal.Id,
-                Type = animal.Type,
-                Breed = animal.Breed
+                Id = question.Id,
+                Title = question.Title,
+                Description = question.Description,
+                CreatedAt = question.CreatedAt
 
             }).ToList();
         }
-        public async Task CreateAsync(AnswerViewModel model)
+        public async Task CreateQuestion(QuestionViewModel model)
         {
-            Animal animal = new Animal();
+            Question question = new Question 
+            {
+                Id = Guid.NewGuid().ToString(),
+                Title = model.Title,
+                Description = model.Description,
+                CreatedAt = model.CreatedAt
+            };
 
-            animal.Id = Guid.NewGuid().ToString();
-            animal.Type = model.Type;
-            animal.Breed = model.Breed;
-
-            await context.Animal.AddAsync(animal);
+            await context.Question.AddAsync(question);
             await context.SaveChangesAsync();
         }
-        public async Task DeleteAnimal(string id)
+        public async Task UpdateAsync(QuestionViewModel model)
+        {
+            var question = await context.Question.FirstOrDefaultAsync(x => x.Id == model.Id);
+
+            if (question != null)
+            {
+                question.Title = model.Title;
+                question.Description = model.Description;
+                question.CreatedAt = model.CreatedAt;
+
+                await context.SaveChangesAsync();
+            }
+        }
+        public async Task SaveChangesAsync()
+        {
+            await context.SaveChangesAsync();
+        }
+        public QuestionViewModel Find(string id)
+        {
+            var question = context.Question.FirstOrDefault(x => x.Id == id);
+            var questionViewModel = new QuestionViewModel()
+            {
+                Id = question.Id,
+                Title = question.Title,
+                Description = question.Description,
+                CreatedAt = question.CreatedAt
+            };
+
+            return questionViewModel;
+        }
+        public async Task DeleteQuestion(string id)
         {
             if (string.IsNullOrEmpty(id) || string.IsNullOrWhiteSpace(id))
             {
@@ -42,46 +76,48 @@ namespace zooforum.Services
             }
             if (id != null)
             {
-                var animalDb = context.Animal.FirstOrDefault(x => x.Id == id);
-                context.Animal.Remove(animalDb);
+                var animalDb = context.Question.FirstOrDefault(x => x.Id == id);
+                context.Question.Remove(animalDb);
                 await context.SaveChangesAsync();
             }
         }
-        public AnswerViewModel GetDetailsById(string id)
+        public QuestionViewModel GetDetailsById(string id)
         {
-            AnswerViewModel animal = context.Animal
-                .Select(animal => new AnswerViewModel
+            QuestionViewModel question = context.Question
+                .Select(question => new QuestionViewModel
                 {
-                    Id = animal.Id,
-                    Type = animal.Type,
-                    Breed = animal.Breed,
-                }).SingleOrDefault(animal => animal.Id == id);
+                    Id = question.Id,
+                    Title = question.Title,
+                    Description = question.Description,
+                    CreatedAt = question.CreatedAt,
+                }).SingleOrDefault(question => question.Id == id);
 
-            return animal;
+            return question;
         }
-        public AnswerViewModel UpdateById(string id)
+        public QuestionViewModel UpdateById(string id)
         {
-            AnswerViewModel animal = context.Animal
-                .Select(animal => new AnswerViewModel
+            QuestionViewModel question = context.Question
+                .Select(question => new QuestionViewModel
                 {
-                    Id = animal.Id,
-                    Type = animal.Type,
-                    Breed = animal.Breed,
-                }).SingleOrDefault(animal => animal.Id == id);
+                    Id = question.Id,
+                    Title = question.Title,
+                    Description = question.Description,
+                    CreatedAt = question.CreatedAt,
+                }).SingleOrDefault(question => question.Id == id);
 
-            return animal;
+            return question;
         }
-        public async Task UpdateAsync(AnswerViewModel model)
+        public async Task UpdateQuestion(QuestionViewModel model)
         {
-            Animal animal = context.Animal.Find(model.Id);
+            Question question = context.Question.Find(model.Id);
 
-            bool isAnimalNull = animal == null;
-            if (isAnimalNull)
+            bool isQuestionNull = question == null;
+            if (isQuestionNull)
             {
                 return;
             }
 
-            context.Animal.Update(animal);
+            context.Question.Update(question);
             await context.SaveChangesAsync();
         }
     }

@@ -5,8 +5,8 @@ namespace zooforum.Services.Interfaces
     public interface IAnswerService
     {
         Task DeleteAnswer(string id);
-        Task CreateAsync(AnswerViewModel model);
+        Task CreateAnswer(AnswerViewModel model);
         AnswerViewModel UpdateById(string id);
-        Task UpdateAsync(AnswerViewModel model);
+        Task UpdateAnswer(AnswerViewModel model);
     }
 }
