@@ -268,10 +268,8 @@ namespace zooforum.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("QuestionId1")
+                    b.Property<string>("QuestionId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -279,7 +277,7 @@ namespace zooforum.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("QuestionId1");
+                    b.HasIndex("QuestionId");
 
                     b.ToTable("Answer");
                 });
@@ -370,7 +368,9 @@ namespace zooforum.Data.Migrations
                 {
                     b.HasOne("zooforum.Data.DataModel.Question", "Question")
                         .WithMany("Answers")
-                        .HasForeignKey("QuestionId1");
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Question");
                 });

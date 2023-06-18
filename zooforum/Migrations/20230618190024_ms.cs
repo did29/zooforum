@@ -2,9 +2,9 @@
 
 #nullable disable
 
-namespace zooforum.Data.Migrations
+namespace zooforum.Migrations
 {
-    public partial class mj : Migration
+    public partial class ms : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

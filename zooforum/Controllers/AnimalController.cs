@@ -10,13 +10,13 @@ namespace zooforum.Controllers
 {
     public class AnimalController : Controller
     {
-        public AnimalService animalService { get; set; }
+		public IAnimalService animalService { get; set; }
 
-        public AnimalController(AnimalService service)
+        public AnimalController(IAnimalService service)
         {
             animalService = service;
         }
-        public ActionResult Index()
+        public IActionResult Index()
         {
             var animals = animalService.GetAll();
             return View(animals);

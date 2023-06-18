@@ -9,11 +9,11 @@ using zooforum.Data;
 
 #nullable disable
 
-namespace zooforum.Data.Migrations
+namespace zooforum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230618133704_mh")]
-    partial class mh
+    [Migration("20230618144842_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -270,10 +270,8 @@ namespace zooforum.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("QuestionId1")
+                    b.Property<string>("QuestionId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -281,7 +279,7 @@ namespace zooforum.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("QuestionId1");
+                    b.HasIndex("QuestionId");
 
                     b.ToTable("Answer");
                 });
@@ -372,7 +370,9 @@ namespace zooforum.Data.Migrations
                 {
                     b.HasOne("zooforum.Data.DataModel.Question", "Question")
                         .WithMany("Answers")
-                        .HasForeignKey("QuestionId1");
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Question");
                 });

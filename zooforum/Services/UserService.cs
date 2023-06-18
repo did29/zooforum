@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using zooforum.Data;
 using zooforum.Data.DataModel;
 using zooforum.Services.Interfaces;
@@ -38,7 +39,7 @@ namespace zooforum.Services
             await context.User.AddAsync(user);
             await context.SaveChangesAsync();
         }
-        public async Task AddUser(User user)
+		public async Task AddUser(User user)
         {
             await context.User.AddAsync(user);
             await context.SaveChangesAsync();

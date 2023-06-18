@@ -2,7 +2,7 @@
 {
     public class AnimalQuestion
     {
-        public int AnimalId { get; set; }
-        public int QuestionId { get; set; }
+        public string AnimalId { get; set; }
+        public string QuestionId { get; set; }
     }
 }

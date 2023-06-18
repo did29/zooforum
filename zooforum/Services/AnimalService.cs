@@ -39,7 +39,7 @@ namespace zooforum.Services
             await context.Animal.AddAsync(animal);
             await context.SaveChangesAsync();
         }
-        public async Task UpdateAsync(AnimalViewModel model)
+        public async Task UpdateAnimal(AnimalViewModel model)
         {
             var animal = await context.Animal.FirstOrDefaultAsync(x => x.Id == model.Id);
 
@@ -111,7 +111,7 @@ namespace zooforum.Services
             return animalViewModel;
         }
 
-        public async Task UpdateAnimal(AnimalViewModel model)
+        public async Task UpdateAsync(AnimalViewModel model)
         {
             Animal animal = context.Animal.Find(model.Id);
 

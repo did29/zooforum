@@ -8,5 +8,11 @@ namespace zooforum.Services.Interfaces
         Task CreateAnimal(AnimalViewModel model);
         AnimalViewModel UpdateById(string id);
         Task UpdateAnimal(AnimalViewModel model);
-    }
+        List<AnimalViewModel> GetAll();
+        Task SaveChangesAsync();
+        AnimalViewModel GetDetailsById(string id);
+        AnimalViewModel Find(string id);
+        Task UpdateAsync(AnimalViewModel model);
+
+	}
 }
