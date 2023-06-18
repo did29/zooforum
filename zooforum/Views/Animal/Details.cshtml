@@ -1,5 +1,57 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Animal Page";
 }
+@model zooforum.Models.Animal
+
+<head>
+    <link type="text/css" rel="stylesheet" href="~/css/niv.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/zooforum.styles.css" asp-append-version="true" />
+</head>
+<body>
+
+
+    <div class="text-center">
+        <h1 style="margin-bottom:70px;color:black;" class="display-4">@Model.Name Page </h1>
+
+
+        <div>
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th  scope="col">Portrait</th>
+                            <th  scope="col">Type</th>
+                            <th  scope="col">Breed</th>
+                            <th  scope="col">Info</th>
+                            <th  scope="col">History</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th style="border:1px solid black" scope="row"><img style="height:250px" src=@Model.PictureSrc /></th>
+                            <td style="border:1px solid black">@Model.Type</td>
+                            <th style="border:1px solid black" scope="row">@Model.Breed</th>
+                            <th style="border:1px solid black" scope="row">@Model.Info</th>
+                            <th style="border:1px solid black" scope="row">@Model.History</th>
+                            </th>
+
+                        </tr>
+
+
+                    </tbody>
+                </table>
+
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
+    <a asp-action="Index" asp-controller="Question">Ask question</a>
+
+</body>
+
+
+

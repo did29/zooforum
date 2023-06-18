@@ -56,16 +56,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5pbWFsXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/diana/OneDrive/Documents/.net/project/zooforum/zooforum/Views/Animal/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5pbWFsXEVkaXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/diana/OneDrive/Documents/.net/project/zooforum/zooforum/Views/Animal/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5pbWFsXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/diana/OneDrive/Documents/.net/project/zooforum/zooforum/Views/Animal/Update.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5pbWFsXFVwZGF0ZS5jc2h0bWw=
+[C:/Users/diana/OneDrive/Documents/.net/project/zooforum/zooforum/Views/Answer/Answers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5zd2VyXEFuc3dlcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/diana/OneDrive/Documents/.net/project/zooforum/zooforum/Views/Answer/Index.cshtml]
@@ -82,6 +78,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/diana/OneDrive/Documents/.net/project/zooforum/zooforum/Views/Question/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXVlc3Rpb25cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/diana/OneDrive/Documents/.net/project/zooforum/zooforum/Views/Question/Questions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXVlc3Rpb25cUXVlc3Rpb25zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/diana/OneDrive/Documents/.net/project/zooforum/zooforum/Views/Shared/Error.cshtml]

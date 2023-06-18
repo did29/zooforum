@@ -1,5 +1,24 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model zooforum.Models.AnswerViewModel
+
 @{
+    ViewData["Title"] = "Answer Page";
+}
+
+<h2>Answer Question</h2>
+
+@using (Html.BeginForm("CreateAnswer", "Answer", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Content)
+        @Html.TextAreaFor(m => m.Content, new { @class = "form-control", rows = 4 })
+        @Html.ValidationMessageFor(m => m.Content)
+    </div>
+
+    @Html.HiddenFor(m => m.QuestionId)
+
+    <div class="form-group">
+        <input type="submit" value="Submit Answer" class="btn btn-primary" />
+    </div>
 }

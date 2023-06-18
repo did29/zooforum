@@ -10,7 +10,23 @@ namespace zooforum.Controllers
 {
     public class AnimalController : Controller
     {
-		public IAnimalService animalService { get; set; }
+        private readonly DogApiClient _dogApiClient;
+
+        public AnimalController()
+        {
+            _dogApiClient = new DogApiClient();
+        }
+
+        public async Task<ActionResult> RandomDogImage()
+        {
+            string imageUrl = await _dogApiClient.GetRandomDogImageAsync();
+
+            // Pass the image URL to the view
+            ViewBag.ImageUrl = imageUrl;
+
+            return View();
+        }
+        public IAnimalService animalService { get; set; }
 
         public AnimalController(IAnimalService service)
         {

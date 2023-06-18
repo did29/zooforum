@@ -1,0 +1,33 @@
+﻿@model IEnumerable<zooforum.Models.AnswerViewModel>
+
+@{
+    ViewData["Title"] = "All Answers";
+}
+
+<h2>All Answers</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Answer</th>
+            <th>Question</th>
+            <th>Created By</th>
+            <th>Created At</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var answer in Model)
+        {
+            <tr>
+                <td>@answer.Content</td>
+                <td>@answer.QuestionTitle</td>
+                <td>@answer.CreatedBy</td>
+                <td>@answer.CreatedAt.ToString("yyyy-MM-dd HH:mm:ss")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a href="@Url.Action("AnswerPage", "Answer", new { questionId = Model.FirstOrDefault().QuestionId })" class="btn btn-primary">Create Answer</a>
+</div>

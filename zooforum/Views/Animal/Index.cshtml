@@ -1,7 +1,48 @@
 ﻿@{
-	ViewData["Title"] = "Animals";
+    ViewData["Title"] = "Animals";
 }
 
 <div class="text-center">
-	<h1 class="display-4">Животни</h1>
+    <h1 class="display-4">Животни</h1>
 </div>
+
+@model IEnumerable<zooforum.Models.Animal>
+
+<head>
+    <link type="text/css" rel="stylesheet" href="~/css/niv.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/zooforum.styles.css" asp-append-version="true" />
+</head>
+
+<body>
+    <div class="text-center">
+        <form style="background-color:white; border:none;" action="/Animal/Index" method="post">
+            <fieldset>
+                <p class="SearchByCategory">Search By Category Here</p>
+                <select id="Category" name="Category">
+                    <option value="Show All">Show All</option>
+                    <option value="Dog">Dogs</option>
+                    <option value="Cat">Cats</option>
+                    <option value="Parot">Parrots</option>
+                </select>
+                <input class="submit" type="submit" value="Show Me" />
+            </fieldset>
+        </form>
+
+        <div>
+            <div class="ContainList">
+                @foreach (var animal in Model)
+                {
+                    <div class="card" style="width: 18rem; height:20rem">
+                        <img class="card-img-top" style="height:15rem;" src="@animal.PictureSrc" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">@animal.Name</h5>
+                            <a asp-action="AnimalPage" class="ShowMeMore" asp-route-id="@animal.AnimalId" asp-controller="Animal">Show Me More</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</body>

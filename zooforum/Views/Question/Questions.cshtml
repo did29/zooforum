@@ -1,0 +1,42 @@
+﻿@model IEnumerable<zooforum.Models.QuestionViewModel>
+
+@{
+    ViewData["Title"] = "View All Questions";
+}
+
+<h2>All Questions</h2>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Author</th>
+                <th>Date Created</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var question in Model)
+            {
+                <tr>
+                    <td>@question.Title</td>
+                    <td>@question.Author</td>
+                    <td>@question.DateCreated.ToShortDateString()</td>
+                    <td>
+                        <a href="@Url.Action("CreateAnswer", "Answer", new { questionId = question.Id })" class="btn btn-primary">Create Answer</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No questions found.</p>
+}
+
+<div>
+    <a href="@Url.Action("CreateQuestion", "Question")">Create New Question</a>
+</div>

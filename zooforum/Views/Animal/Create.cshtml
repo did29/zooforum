@@ -1,1 +1,65 @@
-﻿
+﻿@{
+    ViewData["Title"] = "Create Animal";
+}
+@model animal.Models.Animal
+
+<head>
+    <link type="text/css" rel="stylesheet" href="~/css/niv.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/zooforum.styles.css" asp-append-version="true" />
+</head>
+
+<body>
+    <div class="text-center">
+        <h1 class="display-4">Add New Animal</h1>
+
+        <div class="container-fluid" style="width:350px;">
+            <div class="row">
+                <div class="col-md-12">
+                    @using (Html.BeginForm("AddNewAnimal", "Admin", FormMethod.Post))
+                    {
+                        <div class="form-group">
+                            <span style="color:red">animal type should be under 20 letters</span>
+                            <br />
+                            @Html.LabelFor(model => model.Type, "Type", new { @class = "label" })
+                            @Html.TextBoxFor(model => model.Type, new { @class = "form-control", @placeholder = "Type" })
+                        </div>
+                        <div class="form-group">
+                            <span style="color:red">animal breed should be under 50 letters</span>
+                            <br />
+                            @Html.LabelFor(model => model.Breed, "Breed", new { @class = "label" })
+                            @Html.TextBoxFor(model => model.Breed, new { @class = "form-control", @placeholder = "Breed" })
+                        </div>
+                        <div class="form-group">
+                            <span style="color:red">animal info should be under 50 letters</span>
+                            <br />
+                            @Html.LabelFor(model => model.Info, "Info", new { @class = "label" })
+                            @Html.TextAreaFor(model => model.Info, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <span style="color:red">animal history should be under 150 letters</span>
+                            <br />
+                            @Html.LabelFor(model => model.History, "History", new { @class = "label" })
+                            @Html.TextAreaFor(model => model.History, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PictureSrc, "Picture", new { @class = "label" })
+                            @Html.TextBoxFor(model => model.PictureSrc, "", new { accept = ".jpg, .jpeg, .png, .pdf" })
+                        </div>
+                        <fieldset>
+                            <p class="SearchByCategory">Category:</p>
+                            <select id="categoryId" name="categoryId">
+                                <option value="1">Dogs</option>
+                                <option value="2">Cats</option>
+                                <option value="3">Parrots</option>
+                            </select>
+                            <input class="submit" type="submit" value="category..." />
+                        </fieldset>
+                        <input type="submit" class="btn btn-primary" value="Add Animal" />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
