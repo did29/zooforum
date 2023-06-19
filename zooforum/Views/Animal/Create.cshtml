@@ -1,4 +1,5 @@
-﻿@{
+﻿@if (User.IsInRole("Admin"))
+@{
     ViewData["Title"] = "Create Animal";
 }
 @model animal.Models.Animal

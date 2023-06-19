@@ -11,6 +11,22 @@ namespace zooforum.Controllers
     public class AnimalController : Controller
     {
         private readonly DogApiClient _dogApiClient;
+        private const string ApiKey = "live_facp0Z1QxYUgk18rlw5tYEMzZfvPWVkgTa27FZKs89l6beF6edNsglX5TugU8LJV";
+
+        public AnimalController()
+        {
+            _dogApiClient = new DogApiClient();
+        }
+
+        public async Task<ActionResult> RandomDogImage()
+        {
+            string imageUrl = await _dogApiClient.GetRandomDogImageAsync(ApiKey);
+
+            // Pass the image URL to the view
+            ViewBag.ImageUrl = imageUrl;
+
+            return View();
+        }
 
         public AnimalController()
         {
@@ -21,7 +37,7 @@ namespace zooforum.Controllers
         {
             string imageUrl = await _dogApiClient.GetRandomDogImageAsync();
 
-            // Pass the image URL to the view
+            
             ViewBag.ImageUrl = imageUrl;
 
             return View();

@@ -1,0 +1,27 @@
+﻿@if (User.IsInRole("Admin"))
+@model zooforum.Models.DeleteAnswerViewModel
+
+@{
+    ViewData["Title"] = "Delete Answer";
+}
+
+<h2>Delete Answer</h2>
+
+<div>
+    <h4>Are you sure you want to delete this answer?</h4>
+    <h5>Id: @Model.Id</h5>
+    <h5>Content: @Model.Content</h5>
+    <h5>Created At: @Model.CreatedAt</h5>
+    <h5>Updated At: @Model.UpdatedAt</h5>
+    <h5>Question Id: @Model.QuestionId</h5>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions">
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}

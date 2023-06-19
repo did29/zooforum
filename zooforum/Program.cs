@@ -31,18 +31,18 @@ else
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-//for the roles
+
 using (var scope = app.Services.CreateScope())
 {
 	var roles = new[] { "Admin", "User", "Chef" };
 
-	//foreach (var role in roles)
-	//{
-	//	var roleManager =
-	//		scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-	//	if (!await roleManager.RoleExistsAsync(role))
-	//		await roleManager.CreateAsync(new IdentityRole(role));
-	//}
+	foreach (var role in roles)
+	{
+		var roleManager =
+			scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+		if (!await roleManager.RoleExistsAsync(role))
+			await roleManager.CreateAsync(new IdentityRole(role));
+	}
 }
 
 using (var scope = app.Services.CreateScope())

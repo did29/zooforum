@@ -1,4 +1,5 @@
-﻿@model zooforum.Models.AnimalViewModel
+﻿@if (User.IsInRole("Admin"))
+@model zooforum.Models.AnimalViewModel
 
 @{
     ViewData["Title"] = "Delete Animal";
